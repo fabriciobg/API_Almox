@@ -4,11 +4,11 @@ module.exports = app => {
 
 	const store = nome => {
 		return new Promise((resolve, reject) => {
-			app.db('item')
-				.returning('*')
+			app.db('almoxarifado')
 				.insert({
 					nome: nome.toUpperCase()
 				})
+				.returning('*')
 				.then(resp => {
 					resolve(resp)
 				})
@@ -20,7 +20,7 @@ module.exports = app => {
 
 	const isThisRegistered = nome => {
 		return new Promise((resolve, reject) => {
-			app.db('item')
+			app.db('almoxarifado')
 				.where({
 					nome: nome.toUpperCase(),
 					deleted_at: null
@@ -37,12 +37,11 @@ module.exports = app => {
 
 	const index = () => {
 		return new Promise((resolve, reject) => {
-			app.db('item')
+			app.db('almoxarifado')
 				.select('id', 'nome')
 				.where({
 					deleted_at: null
 				})
-				.orderBy('nome')
 				.then(resp => {
 					resolve(resp)
 				})
@@ -54,7 +53,7 @@ module.exports = app => {
 
 	const update = (id, nome) => {
 		return new Promise((resolve, reject) => {
-			app.db('item')
+			app.db('almoxarifado')
 				.where({
 					id
 				})
@@ -75,6 +74,6 @@ module.exports = app => {
 		store,
 		isThisRegistered,
 		index,
-		update
+		update,
 	}
 }
