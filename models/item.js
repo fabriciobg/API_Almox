@@ -52,6 +52,23 @@ module.exports = app => {
 		})
 	}
 
+	const get = nome => {
+		return new Promise((resolve, reject) => {
+			app.db('item')
+				.select('id', 'nome')
+				.where({
+					nome: nome.toUpperCase(),
+					deleted_at: null
+				})
+				.then(resp => {
+					resolve(resp)
+				})
+				.catch(err => {
+					reject(err)
+				})
+		})
+	}
+
 	const update = (id, nome) => {
 		return new Promise((resolve, reject) => {
 			app.db('item')
@@ -71,10 +88,30 @@ module.exports = app => {
 		})
 	}
 
+	const deleteItem = id => {
+		return new Promise((resolve, reject) => {
+			app.db('item')
+				.where({
+					id
+				})
+				.update({
+					deleted_at: moment().format()
+				})
+				.then(resp => {
+					resolve(resp)
+				})
+				.catch(err => {
+					reject(err)
+				})
+		})
+	}
+
 	return {
 		store,
 		isThisRegistered,
 		index,
-		update
+		get,
+		update,
+		deleteItem
 	}
 }

@@ -4,7 +4,7 @@ module.exports = app => {
 
 	const store = nome => {
 		return new Promise((resolve, reject) => {
-			app.db('almoxarifado')
+			app.db('armazem')
 				.insert({
 					nome: nome.toUpperCase()
 				})
@@ -20,7 +20,7 @@ module.exports = app => {
 
 	const isThisRegistered = nome => {
 		return new Promise((resolve, reject) => {
-			app.db('almoxarifado')
+			app.db('armazem')
 				.where({
 					nome: nome.toUpperCase(),
 					deleted_at: null
@@ -37,7 +37,7 @@ module.exports = app => {
 
 	const index = () => {
 		return new Promise((resolve, reject) => {
-			app.db('almoxarifado')
+			app.db('armazem')
 				.select('id', 'nome')
 				.where({
 					deleted_at: null
@@ -51,9 +51,26 @@ module.exports = app => {
 		})
 	}
 
+	const get = nome => {
+		return new Promise((resolve, reject) => {
+			app.db('armazem')
+				.select('id', 'nome')
+				.where({
+					nome: nome.toUpperCase(),
+					deleted_at: null
+				})
+				.then(resp => {
+					resolve(resp)
+				})
+				.catch(err => {
+					reject(err)
+				})
+		})
+	}
+
 	const update = (id, nome) => {
 		return new Promise((resolve, reject) => {
-			app.db('almoxarifado')
+			app.db('armazem')
 				.where({
 					id
 				})
@@ -70,10 +87,30 @@ module.exports = app => {
 		})
 	}
 
+	const deleteArmazem = id => {
+		return new Promise((resolve, reject) => {
+			app.db('armazem')
+				.where({
+					id
+				})
+				.update({
+					deleted_at: moment().format()
+				})
+				.then(resp => {
+					resolve(resp)
+				})
+				.catch(err => {
+					reject(err)
+				})
+		})
+	}
+
 	return {
 		store,
 		isThisRegistered,
 		index,
+		get,
 		update,
+		deleteArmazem
 	}
 }

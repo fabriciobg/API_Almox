@@ -1,8 +1,8 @@
 
 exports.up = function (knex) {
-    return knex.schema.createTable('item_almoxarifado', function (table) {
+    return knex.schema.createTable('item_armazem', function (table) {
         table.increments()
-        table.bigInteger('id_almoxarifado').unsigned().index().references('id').inTable('almoxarifado').notNullable()
+        table.bigInteger('id_armazem').unsigned().index().references('id').inTable('armazem').notNullable()
         table.bigInteger('id_item').unsigned().index().references('id').inTable('item').notNullable()
         table.string('nome').notNullable()
         table.integer('quantidade').unsigned().notNullable().defaultTo(0)

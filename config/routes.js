@@ -7,17 +7,29 @@ module.exports = app => {
     app.route('/item/list')
         .get(app.controllers.itemController.buscarItems)
 
+    app.route('/item/list/:nome')
+        .get(app.controllers.itemController.buscarItem)
+
     app.route('/item/update')
         .put(app.controllers.itemController.editarItem)
 
-    /** Rotas almoxarifado */
-    app.route('/almoxarifado/register')
-        .post(app.controllers.almoxarifadoController.cadastrarAlmoxarifado)
+    app.route('/item/delete')
+        .put(app.controllers.itemController.deletarItem)
 
-    app.route('/almoxarifado/list')
-        .get(app.controllers.almoxarifadoController.buscarAlmoxarifados)
+    /** Rotas armazém */
+    app.route('/armazem/register')
+        .post(app.controllers.armazemController.cadastrarArmazem)
 
-    app.route('/almoxarifado/update')
-        .put(app.controllers.almoxarifadoController.editarAlmoxarifado)
+    app.route('/armazem/list')
+        .get(app.controllers.armazemController.buscarArmazens)
+
+    app.route('/armazem/list/:nome')
+        .get(app.controllers.armazemController.buscarArmazem)
+
+    app.route('/armazem/update')
+        .put(app.controllers.armazemController.editarArmazem)
+
+    app.route('/armazem/delete')
+        .put(app.controllers.armazemController.deletarArmazem)
 
 }

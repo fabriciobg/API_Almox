@@ -1,6 +1,6 @@
 
 exports.up = function (knex) {
-    return knex.schema.createTable('almoxarifado', function (table) {
+    return knex.schema.createTable('armazem', function (table) {
         table.increments()
         table.string('nome')
         table.timestamp('created_at').notNullable().defaultTo(knex.fn.now())
