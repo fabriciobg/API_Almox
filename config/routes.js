@@ -32,4 +32,20 @@ module.exports = app => {
     app.route('/armazem/delete')
         .put(app.controllers.armazemController.deletarArmazem)
 
+    /** Rotas item armazém */
+    app.route('/item/armazem/register')
+        .post(app.controllers.itemArmazemController.cadastrarItemArmazem)
+
+    app.route('/item/armazem/list')
+        .get(app.controllers.itemArmazemController.buscarItensArmazem)
+
+    app.route('/item/armazem/list/:id_item')
+        .get(app.controllers.itemArmazemController.buscarItemArmazem)
+
+    app.route('/item/armazem/update')
+        .put(app.controllers.itemArmazemController.editarItemArmazem)
+
+    app.route('/item/armazem/delete')
+        .put(app.controllers.itemArmazemController.deletarItemArmazem)
+
 }

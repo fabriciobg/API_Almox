@@ -9,7 +9,7 @@ module.exports = app => {
 			return res.status(500).json({ message: 'Nome do armazém não informado' })
 		}
 
-		app.models.armazem.store(nome)
+		await app.models.armazem.store(nome)
 			.then(resp => {
 				console.log({ message: 'Armazém cadastrado com sucesso' })
 				return res.status(200).json(resp)
@@ -22,7 +22,7 @@ module.exports = app => {
 	}
 
 	const buscarArmazens = async (req, res) => {
-		app.models.armazem.index()
+		await app.models.armazem.index()
 			.then(resp => {
 				console.log({ message: 'Listando armazens' })
 				return res.status(200).json(resp)
@@ -43,7 +43,7 @@ module.exports = app => {
 			return res.status(500).json({ message: 'Nome do armazém não informado' })
 		}
 
-		app.models.armazem.get(nome)
+		await app.models.armazem.get(nome)
 			.then(resp => {
 				console.log({ message: 'Listando armazens' })
 				return res.status(200).json(resp)
@@ -70,7 +70,7 @@ module.exports = app => {
 			return res.status(500).json({ message: 'Nome do armazem não informado' })
 		}
 
-		app.models.armazem.update(id, nome)
+		await app.models.armazem.update(id, nome)
 			.then(resp => {
 				console.log({ message: 'Armazem modificado com sucesso' })
 				res.statusMessage = 'Armazem modificado com sucesso'

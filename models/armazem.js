@@ -42,6 +42,7 @@ module.exports = app => {
 				.where({
 					deleted_at: null
 				})
+				.orderBy('nome')
 				.then(resp => {
 					resolve(resp)
 				})
