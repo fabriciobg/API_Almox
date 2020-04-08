@@ -37,7 +37,7 @@ module.exports = app => {
         .post(app.controllers.itemArmazemController.cadastrarItemArmazem)
 
     app.route('/item/armazem/list')
-        .get(app.controllers.itemArmazemController.buscarItensArmazem)
+        .post(app.controllers.itemArmazemController.buscarItensArmazem)
 
     app.route('/item/armazem/list/:id_item')
         .get(app.controllers.itemArmazemController.buscarItemArmazem)
