@@ -40,7 +40,7 @@ module.exports = app => {
         .post(app.controllers.itemArmazemController.buscarItensArmazem)
 
     app.route('/item/armazem/list/:id_item')
-        .get(app.controllers.itemArmazemController.buscarItemArmazem)
+        .put(app.controllers.itemArmazemController.buscarItemArmazem)
 
     app.route('/item/armazem/update')
         .put(app.controllers.itemArmazemController.editarItemArmazem)

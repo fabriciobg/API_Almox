@@ -20,7 +20,7 @@ module.exports = app => {
         return new Promise((resolve, reject) => {
             app.db('item_armazem as ia')
                 .join('item', 'item.id', 'ia.id_item')
-                .select('ia.id', 'ia.id_item', 'item.nome', 'ia.quantidade', 'ia.grandeza')
+                .select('ia.id', 'ia.id_armazem', 'ia.id_item', 'item.nome', 'ia.quantidade', 'ia.grandeza')
                 .where({
                     'ia.id_armazem': id_armazem,
                     'ia.deleted_at': null
@@ -45,7 +45,6 @@ module.exports = app => {
                     'ia.id_item': id_item,
                     'ia.deleted_at': null
                 })
-                .first()
                 .then(resp => {
                     resolve(resp)
                 })

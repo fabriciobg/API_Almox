@@ -68,8 +68,8 @@ module.exports = app => {
         const { id, id_item, quantidade, grandeza } = req.body
 
         if(!id || !id_item || !quantidade || !grandeza) {
-            console.log({ message: 'ID, ID item, quantidade e/ou gradeza não informados' })
-            res.statusMessage = 'ID armazem, ID item, quantidade e/ou gradeza nao informados'
+            console.log({ message: 'ID, ID item, quantidade e/ou grandeza não informados' })
+            res.statusMessage = 'ID armazem, ID item, quantidade e/ou grandeza nao informados'
             return res.status(500).json({ message: 'ID armazem, ID item, quantidade e/ou gradeza não informados' })
         }
 
