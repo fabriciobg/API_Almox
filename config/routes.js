@@ -48,4 +48,10 @@ module.exports = app => {
     app.route('/item/armazem/delete')
         .put(app.controllers.itemArmazemController.deletarItemArmazem)
 
+    /** Rotas usuário */
+    app.route('/user/register')
+        .post(app.controllers.userController.cadastrarUsuario)
+    
+    app.route('/login')
+        .post(app.controllers.userController.checkLogin)
 }
