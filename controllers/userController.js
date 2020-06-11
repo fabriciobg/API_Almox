@@ -52,8 +52,8 @@ module.exports = app => {
         await app.models.user.show(username, password)
             .then((resp) => {
                 if (resp.length === 1) {
-                    console.log({ message: `${username} autenticado` })
-                    res.statusMessage = `${username} autenticado`
+                    console.log({ message: `${resp[0].name} autenticado com sucesso!` })
+                    res.statusMessage = `${resp[0].name} autenticado com sucesso!`
                     return res.status(200).json(resp)
                 } else {
                     console.log({ message: 'Login ou senha incorretos' })
